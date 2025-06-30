@@ -1,0 +1,58 @@
+.study-group-container {
+    width: 100%;
+    min-height: calc(100vh - 64px); /* Adjust for Navbar height */
+    padding: 30px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.study-group-title {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.study-group-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 25px;
+    color: #fff;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific styles for components inside panels */
+.study-group-panel h5, .study-group-panel h6 {
+    color: #fff;
+    font-weight: bold;
+}
+
+.study-group-panel .MuiTextField-root .MuiInputBase-root {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.study-group-panel .MuiTextField-root .MuiInputBase-root:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.study-group-panel .MuiInputLabel-root {
+    color: #eee;
+}
+
+.study-group-panel .MuiButton-containedPrimary {
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+}
+
+.study-group-panel .MuiButton-containedPrimary:hover {
+    background-color: #f0f0f0;
+} 

@@ -1,0 +1,44 @@
+.dashboard-container {
+    width: 100%;
+    min-height: calc(100vh - 64px); /* Adjust for Navbar height */
+    padding: 30px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Keeps the background stationary on scroll */
+}
+
+.dashboard-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 25px;
+    color: #fff; /* Assuming text inside panels should be white */
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Make form inputs and buttons look good on the new background */
+.dashboard-panel .MuiTextField-root .MuiInputBase-root {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.dashboard-panel .MuiTextField-root .MuiInputBase-root:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.dashboard-panel .MuiInputLabel-root {
+    color: #eee;
+}
+
+.dashboard-panel .MuiButton-containedPrimary {
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+}
+
+.dashboard-panel .MuiButton-containedPrimary:hover {
+    background-color: #f0f0f0;
+} 
