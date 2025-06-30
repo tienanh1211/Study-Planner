@@ -150,11 +150,14 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ## Screenshots
 
-*(Placeholder for Login Page Screenshot)*
-![Login Page](./path/to/login-screenshot.png)
+* Login Page Screenshot*
+![image](https://github.com/user-attachments/assets/0257ab5e-fc31-4d5b-b8f8-b48e4403505c)
 
-*(Placeholder for Dashboard Screenshot)*
-![Dashboard](./path/to/dashboard-screenshot.png)
 
-*(Placeholder for Study Group Page Screenshot)*
-![Study Group Page](./path/to/group-page-screenshot.png) 
+* Dashboard Screenshot*
+![image](https://github.com/user-attachments/assets/191ad0e4-7296-4add-9b25-5c52a6feaaa8)
+
+
+* Study Group Page Screenshot*
+![image](https://github.com/user-attachments/assets/b1832f15-60e1-430d-8c59-260537322325)
+ 
