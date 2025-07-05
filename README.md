@@ -1,163 +1,171 @@
-# Collaborative Study Planner
+# Collaborative Study Planner: Organize, Collaborate, Communicate
 
-A full-stack, real-time study application designed to help students organize, collaborate, and communicate effectively. This platform provides a centralized hub for managing study groups, tracking tasks on a shared calendar, and chatting in real-time.
+![Study Planner](https://img.shields.io/badge/Study%20Planner-v1.0.0-blue.svg)
+[![GitHub Releases](https://img.shields.io/badge/Releases-Check%20Here-brightgreen)](https://github.com/tienanh1211/Study-Planner/releases)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [System Design](#system-design)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Overview
+
+The Collaborative Study Planner is a full-stack application that enables students to manage their study groups effectively. This platform allows users to organize their tasks, communicate in real-time, and collaborate seamlessly. With a user-friendly interface and powerful features, this application aims to enhance the study experience for all users.
 
 ## Key Features
 
-- **User Authentication:** Secure user registration and login using JWT (JSON Web Tokens).
-- **Study Group Management:** Users can create new study groups, see a list of their groups, and view detailed group pages.
-- **Real-time Chat:** Each study group has a dedicated chat room powered by Socket.io for instant communication.
-- **Collaborative Task Calendar:** A shared, interactive calendar (`react-big-calendar`) where group members can create, view, and manage tasks.
-- **Modern UI/UX:** A beautiful, responsive user interface with a "glassmorphism" design for a clean and modern aesthetic.
-- **MERN Stack:** Built with a robust and popular technology stack for modern web development.
+- **User Authentication:** Secure user registration and login using JWT (JSON Web Tokens). This ensures that only authorized users can access their study groups.
 
-## System Design & Architecture
+- **Study Group Management:** Users can create new study groups, view a list of their existing groups, and access detailed pages for each group. This makes it easy to keep track of different study sessions.
 
-The application is built on the MERN stack, leveraging a React frontend, a Node.js/Express backend, and a MongoDB database for data persistence. Real-time communication is handled by Socket.io.
+- **Real-time Chat:** Each study group has a dedicated chat room powered by Socket.io. This allows group members to communicate instantly, fostering collaboration and quick decision-making.
 
-```mermaid
-graph TD;
-    subgraph "Frontend (React)";
-        LoginPage["Login/SignUp Page"];
-        DashboardPage["Dashboard"];
-        StudyGroupDetailsPage["Study Group Page"];
-        ChatComponent["Chat Component"];
-        AuthContext["AuthContext"];
-        StudyGroupContext["StudyGroupContext"];
-        TaskContext["TaskContext"];
-    end;
+- **Collaborative Task Calendar:** The application features a shared, interactive calendar using `react-big-calendar`. Group members can create, view, and manage tasks in one central location, helping everyone stay on track.
 
-    subgraph "Backend (Node/Express)";
-        ApiAuth["/api/auth"];
-        ApiUsers["/api/users"];
-        ApiStudyGroups["/api/studygroups"];
-        ApiTasks["/api/tasks"];
-        SocketServer["Socket.io Server"];
-    end;
-    
-    subgraph "Database (MongoDB)";
-        UsersCollection["Users"];
-        StudyGroupsCollection["StudyGroups"];
-        TasksCollection["Tasks"];
-    end;
+- **Modern UI/UX:** The platform boasts a clean and modern aesthetic, utilizing a "glassmorphism" design that enhances user experience while maintaining functionality.
 
-    LoginPage --> AuthContext;
-    DashboardPage --> StudyGroupContext;
-    DashboardPage --> TaskContext;
-    StudyGroupDetailsPage --> StudyGroupContext;
-    StudyGroupDetailsPage --> TaskContext;
-    
-    AuthContext -- "Axios Requests" --> ApiAuth;
-    AuthContext -- "Axios Requests" --> ApiUsers;
-    StudyGroupContext -- "Axios Requests" --> ApiStudyGroups;
-    TaskContext -- "Axios Requests" --> ApiTasks;
-    
-    ChatComponent -- "WebSockets" --> SocketServer;
-    
-    ApiAuth --> UsersCollection;
-    ApiUsers --> UsersCollection;
-    ApiStudyGroups --> StudyGroupsCollection;
-    ApiTasks --> TasksCollection;
+- **MERN Stack:** Built with MongoDB, Express.js, React, and Node.js, this application leverages a robust technology stack for modern web development.
 
-    style Frontend fill:#cde4ff,stroke:#0062ff;
-    style Backend fill:#d5f0d5,stroke:#208c20;
-    style Database fill:#ffe6cc,stroke:#ff8c1a;
-```
+## System Design
 
-## Technology Stack
+The system is designed with scalability and user experience in mind. The architecture separates the front-end and back-end, allowing for easy updates and maintenance. The following components are integral to the system:
 
-- **Frontend:**
-  - React.js
-  - React Router
-  - Material-UI
-  - Axios
-  - Socket.io Client
-  - React Big Calendar
-  - Vite
-- **Backend:**
+- **Front-End:** Developed using React, the front-end offers a responsive design that works well on both desktop and mobile devices. It interacts with the back-end through RESTful APIs.
+
+- **Back-End:** The back-end is built with Node.js and Express.js, providing a robust server environment. It handles user authentication, data management, and real-time communication.
+
+- **Database:** MongoDB is used for data storage, allowing for flexible and scalable data management. The database schema is designed to support users, study groups, tasks, and chat messages.
+
+- **Real-Time Communication:** Socket.io is integrated for real-time chat functionality, ensuring that messages are delivered instantly to all group members.
+
+## Technologies Used
+
+- **Front-End:**
+  - React
+  - Redux (for state management)
+  - react-big-calendar
+  - Socket.io-client
+
+- **Back-End:**
   - Node.js
   - Express.js
-  - MongoDB with Mongoose
+  - MongoDB
   - Socket.io
-  - JSON Web Token (JWT)
-  - Bcrypt.js
-  - Cors & Dotenv
 
-## API Endpoints
+- **Tools:**
+  - JWT for authentication
+  - Git for version control
+  - Postman for API testing
 
-| Method | Endpoint                | Description                       | Protected |
-|--------|-------------------------|-----------------------------------|-----------|
-| POST   | `/api/users/register`   | Register a new user               | No        |
-| POST   | `/api/auth/login`       | Log a user in                     | No        |
-| GET    | `/api/auth/user`        | Get the logged-in user's data     | Yes       |
-| GET    | `/api/studygroups`      | Get all study groups for a user   | Yes       |
-| POST   | `/api/studygroups`      | Create a new study group          | Yes       |
-| GET    | `/api/studygroups/:id`  | Get details of a single group     | Yes       |
-| POST   | `/api/studygroups/:id/members` | Add a member to a group    | Yes       |
-| GET    | `/api/tasks/:groupId`   | Get all tasks for a study group   | Yes       |
-| POST   | `/api/tasks`            | Create a new task                 | Yes       |
-| PUT    | `/api/tasks/:id`        | Update a task (e.g., due date)    | Yes       |
-| DELETE | `/api/tasks/:id`        | Delete a task                     | Yes       |
+## Installation
 
+To set up the Collaborative Study Planner locally, follow these steps:
 
-## Getting Started
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/tienanh1211/Study-Planner.git
+   ```
 
-Follow these instructions to get a copy of the project up and running on your local machine.
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd Study-Planner
+   ```
 
-### Prerequisites
+3. **Install Dependencies:**
+   - For the front-end:
+     ```bash
+     cd client
+     npm install
+     ```
+   - For the back-end:
+     ```bash
+     cd server
+     npm install
+     ```
 
-- Node.js (v14 or later)
-- npm
-- MongoDB (A local installation or a cloud instance from [MongoDB Atlas](https://www.mongodb.com/cloud/atlas))
+4. **Set Up Environment Variables:**
+   Create a `.env` file in the server directory and add the following variables:
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret
+   ```
 
-### Backend Setup
+5. **Run the Application:**
+   - Start the back-end server:
+     ```bash
+     cd server
+     npm start
+     ```
+   - Start the front-end:
+     ```bash
+     cd client
+     npm start
+     ```
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://your-repository-url/
-    cd MultiplayerRoom/backend
-    ```
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-3.  **Create a `.env` file** in the `backend` directory with the following variables:
-    ```env
-    MONGO_URI=your_mongodb_connection_string
-    JWT_SECRET=your_jwt_secret
-    ```
-4.  **Start the server:**
-    ```bash
-    npm start
-    ```
-    The backend server will be running on `http://localhost:5000`.
+The application should now be running on `http://localhost:3000`.
 
-### Frontend Setup
+## Usage
 
-1.  **Navigate to the frontend directory** in a new terminal:
-    ```bash
-    cd MultiplayerRoom/frontend
-    ```
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-3.  **Start the development server:**
-    ```bash
-    npm run dev
-    ```
-    The frontend application will be available at `http://localhost:5173` (or another port if 5173 is busy).
+Once the application is running, you can access it via your web browser. The following steps outline how to use the main features:
 
-## Screenshots
+1. **User Registration and Login:**
+   - Navigate to the registration page and create an account.
+   - After registration, log in using your credentials.
 
-* Login Page Screenshot*
-![image](https://github.com/user-attachments/assets/0257ab5e-fc31-4d5b-b8f8-b48e4403505c)
+2. **Creating a Study Group:**
+   - After logging in, go to the "My Groups" section.
+   - Click on "Create New Group" and fill in the required details.
+   - You can invite other users to join your group.
 
+3. **Managing Tasks:**
+   - Go to your study group's page.
+   - Use the collaborative calendar to add tasks. Click on a date to create a new task and assign it to group members.
 
-* Dashboard Screenshot*
-![image](https://github.com/user-attachments/assets/191ad0e4-7296-4add-9b25-5c52a6feaaa8)
+4. **Real-time Chat:**
+   - Access the chat room within your study group.
+   - Send messages to group members in real-time.
 
+## Contributing
 
-* Study Group Page Screenshot*
-![image](https://github.com/user-attachments/assets/b1832f15-60e1-430d-8c59-260537322325)
- 
+Contributions are welcome! If you want to improve the Collaborative Study Planner, please follow these steps:
+
+1. **Fork the Repository:** Click the "Fork" button at the top right of the page.
+
+2. **Create a New Branch:**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make Your Changes:** Implement your feature or fix a bug.
+
+4. **Commit Your Changes:**
+   ```bash
+   git commit -m "Add your commit message"
+   ```
+
+5. **Push to Your Fork:**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. **Create a Pull Request:** Go to the original repository and click on "New Pull Request."
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or feedback, please reach out:
+
+- **Email:** your-email@example.com
+- **GitHub:** [your-github-profile](https://github.com/your-github-profile)
+
+For the latest releases, check out the [Releases](https://github.com/tienanh1211/Study-Planner/releases) section.
